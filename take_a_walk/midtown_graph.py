@@ -41,10 +41,9 @@ def convert_data_to_graph(data):
     return graph
 
 
-def display_graph_networkx(graph, start, finish):
+def display_graph_networkx(graph, path):
     positions = {n: (n.posX, n.posY) for n in graph.nodes()}
-    node_colors = ['red' if node == start or node ==
-                   finish else 'black' for node in graph.nodes()]
+    node_colors = ['red' if node in path else 'black' for node in graph.nodes()]
     edge_colors = ['blue' if edge[2]['type'] ==
                    'SIDEWALK' else 'purple' for edge in graph.edges(data=True)]
     nx.draw_networkx(graph, pos=positions, edge_color=edge_colors,
